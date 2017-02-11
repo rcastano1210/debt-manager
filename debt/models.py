@@ -17,3 +17,21 @@ class Mortgage(models.Model):
     property_tax = models.FloatField(help_text="$0.00")
     start_date = models.DateField(default=date.today)
     end_date = models.DateField()
+
+class Loan(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    # Fields
+    principal_balance = models.FloatField(help_text="current amount owed")
+    interest_rate = models.FloatField(help_text="0.0%")
+    start_date = models.DateField(default=date.today)
+    end_date = models.DateField()
+
+class ExtraMortgagePayment(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    # Fields
+    payment_amount = models.FloatField(help_text="$0.00")
+    payment_date = models.DateField(default=date.today)
