@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from .models import Mortgage
+from debt.models import Mortgage
 
 class MortgageCalculatorView(View):
     def get(self, request):
