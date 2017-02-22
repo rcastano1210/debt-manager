@@ -10,6 +10,8 @@ class Mortgage(models.Model):
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     # Fields
+    name = models.CharField(max_length=30, default="Name")
+    description = models.CharField(max_length=500, default="")
     principal_balance = models.FloatField(help_text="current amount owed")
     interest_rate = models.FloatField(help_text="0.0%")
     mortgage_insurance = models.FloatField(help_text="$0.00")
@@ -23,6 +25,8 @@ class Loan(models.Model):
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     # Fields
+    name = models.CharField(max_length=30, default="Name")
+    description = models.CharField(max_length=500, default="")
     principal_balance = models.FloatField(help_text="current amount owed")
     interest_rate = models.FloatField(help_text="0.0%")
     start_date = models.DateField(default=date.today)
