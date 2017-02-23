@@ -10,4 +10,3 @@ class MortgageCalculatorView(View):
             'loan_terms': [10, 15, 30],
         }
         return render(request, 'mortgage-calculator.html', template_vars)
-

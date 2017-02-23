@@ -1,11 +1,44 @@
+<!- Input Balance ->
+<div class="form-group row">
+  <label for="balance" class="col-2 col-form-label">Balance:</label>
+  <div class="col-10">
+    <input class="form-control" type="number" value="{{ balance }}" id="balance">
+  </div>
+</div>
+
+<!- Input interest rate ->
+<div class="form-group row">
+  <label for="interest_rate" class="col-2 col-form-label">Interest Rate:</label>
+  <div class="col-10">
+    <input class="form-control" type="number" value="{{ interest_rate }}" id="interest_rate">
+  </div>
+</div>
+
+<!- Pick loan term ->
 <div class="dropdown show">
   <a class="btn btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
+    Loan Term:
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     {% for loan_term in loan_terms %}
       <a class="dropdown-item" href="#">{{ loan_term }}</a>
     {% endfor %}
+  </div>
+</div>
+
+<!- Input start date ->
+<div class="form-group row">
+  <label for="start_date" class="col-2 col-form-label">Start Date:</label>
+  <div class="col-10">
+    <input class="form-control" type="date" value="2011-08-19" id="start_date">
+  </div>
+</div>
+
+<!- input end date ->
+<div class="form-group row">
+  <label for="end_date" class="col-2 col-form-label">End Date:</label>
+  <div class="col-10">
+    <input class="form-control" type="date" value="2011-08-19" id="end_date">
   </div>
 </div>
