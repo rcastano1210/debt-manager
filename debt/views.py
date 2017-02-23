@@ -19,6 +19,12 @@ class MortgageCalculatorView(View):
         }
         mortgage = Mortgage.objects.create(
             principal_balance=request.POST['balance'],
+            interest_rate=1.2,
+            name='foo',
+            description='mortgage',
+            mortgage_insurance=200,
+            home_insurance=500,
+            property_tax=100,
         )
         mortgage.save()
         return render(request, 'mortgage-calculator.html', template_vars)
