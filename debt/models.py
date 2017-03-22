@@ -6,6 +6,10 @@ from datetime import date
 # Create your models here.
 
 class Mortgage(models.Model):
+
+    def __unicode__(self):
+        return self.name
+
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
@@ -18,9 +22,14 @@ class Mortgage(models.Model):
     home_insurance = models.FloatField(help_text="$0.00")
     property_tax = models.FloatField(help_text="$0.00")
     start_date = models.DateField(default=date.today)
-    end_date = models.DateField()
+    end_date = models.DateField(default=date.today)
+
 
 class Loan(models.Model):
+
+    def __unicode__(self):
+        return self.name
+
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
@@ -33,6 +42,10 @@ class Loan(models.Model):
     end_date = models.DateField()
 
 class ExtraMortgagePayment(models.Model):
+
+    def __unicode__(self):
+        return self.name
+    
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
