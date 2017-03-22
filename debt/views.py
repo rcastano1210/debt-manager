@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View
-from debt.models import Mortgage
+from debt.controllers import MortgageUtils
 
 class MortgageCalculatorView(View):
     def get(self, request):
@@ -17,7 +17,8 @@ class MortgageCalculatorView(View):
             'interest_rate': 4.5,
             'loan_terms': [10, 15, 30],
         }
-        mortgage = Mortgage.objects.create(
+
+        MortgageUtils.add_mortgage(
             principal_balance=request.POST['balance'],
             interest_rate=1.2,
             name='foo',
@@ -26,5 +27,5 @@ class MortgageCalculatorView(View):
             home_insurance=500,
             property_tax=100,
         )
-        mortgage.save()
+
         return render(request, 'mortgage-calculator.html', template_vars)

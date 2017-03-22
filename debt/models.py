@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from datetime import date
+from datetime import date, datetime
 
-# Create your models here.
 
 class Mortgage(models.Model):
 
@@ -41,10 +40,12 @@ class Loan(models.Model):
     start_date = models.DateField(default=date.today)
     end_date = models.DateField()
 
+
 class ExtraMortgagePayment(models.Model):
 
     def __unicode__(self):
-        return self.name
+        print("FOOO")
+        return "${} on {}".format(self.payment_amount, self.payment_dated.strftime("%m/%d/%y"))
     
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
