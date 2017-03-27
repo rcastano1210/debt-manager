@@ -28,4 +28,4 @@ class MortgageCalculatorView(View):
             property_tax=100,
         )
 
-        return render(request, 'mortgage-calculator.html', template_vars)
+        return render(request, 'mortgage-submission.html', template_vars)
