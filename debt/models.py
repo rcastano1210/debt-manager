@@ -44,12 +44,12 @@ class Loan(models.Model):
 class ExtraMortgagePayment(models.Model):
 
     def __unicode__(self):
-        print("FOOO")
         return "${} on {}".format(self.payment_amount, self.payment_date.strftime("%m/%d/%y"))
     
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     # Fields
+    mortgage = models.ForeignKey('Mortgage', on_delete=models.CASCADE,)
     payment_amount = models.FloatField(help_text="$0.00")
     payment_date = models.DateField(default=date.today)
