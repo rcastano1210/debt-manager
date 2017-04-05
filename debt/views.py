@@ -20,12 +20,12 @@ class MortgageCalculatorView(View):
 
         MortgageUtils.add_mortgage(
             principal_balance=request.POST['balance'],
-            interest_rate=1.2,
-            name='foo',
-            description='mortgage',
+            interest_rate=request.POST['interest_rate'],
+            name=request.POST['name'],
+            description='description',
             mortgage_insurance=200,
             home_insurance=500,
             property_tax=100,
         )
 
-        return render(request, 'mortgage-calculator.html', template_vars)
+        return render(request, 'mortgage-submission.html', template_vars)
