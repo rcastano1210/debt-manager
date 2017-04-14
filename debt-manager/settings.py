@@ -25,7 +25,10 @@ SECRET_KEY = 'n)w+(w3efm$3&aenygp$9q5cwr!l)67isu!&k7$w4pix=ls=sh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    'localhost',
+]
 
 
 # Application definition
@@ -55,7 +58,9 @@ ROOT_URLCONF = 'debt-manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'account/templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

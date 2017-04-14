@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from datetime import date, datetime
+from django.contrib.auth.models import User
 
 
 class Mortgage(models.Model):
@@ -11,6 +12,9 @@ class Mortgage(models.Model):
 
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    # foreign key to the user
+    user = models.ForeignKey(User)
 
     # Fields
     name = models.CharField(max_length=30, default="Name")
