@@ -13,14 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.contrib import admin
-from debt.views import MortgageCalculatorView
 
-MORTGAGE_CALCULATOR = 'mortgage-calculator'
-MORTGAGE_CALCULATOR_URL = r'^{}/'.format(MORTGAGE_CALCULATOR)
 
 urlpatterns = [
-    url(MORTGAGE_CALCULATOR_URL, MortgageCalculatorView.as_view(), name=MORTGAGE_CALCULATOR),
     url(r'^admin/', admin.site.urls),
+
+    url(r'', include('debt.urls')),
+    url(r'', include('account.urls')),
 ]
