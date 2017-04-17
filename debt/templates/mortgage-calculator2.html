@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+  <title>Mortgage Calculator</title>
+  <h1>Mortgage Illustrated</h1>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/debt.css' %}">
+
+  <script type="text/javascript" src="{% static 'js/jquery-latest.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/mortgage.js' %}"></script>
+</head>
+
+<body>
+  <div class="loanInputs">
+    <form action="{% url 'mortgage-calculator' %}" method="post">
+        {% csrf_token %}
+
+      <div class="loanInput">
+      <label>Name</label>
+      <input type="text" class="loanAmount" value="Loan Name" id="name" name="name" required>
+    </div>
+
+    <div class="loanInput">
+      <label>Mortgage Balance</label>
+      <input type="number" class="loanAmount" value="{{ balance }}" id="balance" name="balance" required>
+    </div>
+
+    <div class="loanInput">
+      <label>Loan Interest Rate</label>
+      <input type="number" class="loanInterestRate" value="{{ interest_rate }}" id="interest_rate" name="interest_rate" required>
+    </div>
+
+    <div class="loanInput">
+      <label>New Loan</label>
+      <input type="checkbox" class="newLoan" name="newLoan" value="" checked disabled>
+    </div>
+
+    <div class="loanInput">
+      <label>Years Financed</label>
+      <input type="number" class="loanTime" value="15" name="years">
+    </div>
+
+    <div class="loanInput">
+      <label>Current Loan</label>
+      <input type="checkbox" class="currentLoan" name="currentLoan" value="">
+    </div>
+
+    <div class="loanInput">
+      <label>Current Principal</label>
+      <input type="number" class="currentPrincipal" value="600" name="years" disabled>
+    </div>
+
+    <div class="loanInput">
+      <label>Current Interest</label>
+      <input type="number" class="currentInterest" value="400" name="years" disabled>
+    </div>
+
+    <div class="loanInput">
+      <label>Mortgage Start Date</label>
+      <input type="date" class="mortgageStartDate" id="start_date" name="start_date">
+    </div>
+
+      <div class="loanInput">
+      <label>Mortgage End Date</label>
+      <input type="date" class="mortgageEndDate" id="end_date" name="end_date">
+    </div>
+
+    <label>Add Escrow</label>
+    <input type="checkbox" class="addEscrow" name="addEscrow" value="">
+    <div class=escrow hidden>
+      <div class="escrowInput">
+        <label>Home Owner's Insurance (Per Year)</label>
+        <input type="checkbox" class="addHomeInsurance" name="addHomeInsurance" value="">
+        <input type="number" class="homeInsurance" value="1000" name="percent" hidden>
+      </div>
+
+      <div class="escrowInput">
+        <label>County Tax (Per Year)</label>
+        <input type="checkbox" class="addCountyTax" name="addCountyTax" value="">
+        <input type="number" class="countyTax" value="3000" name="dollars" hidden>
+      </div>
+
+      <div class="escrowInput">
+        <label>Private Mortgage Insurance (Per Year)</label>
+        <input type="checkbox" class="addPmi" name="addPmi" value="">
+        <input type="number" class="pmi" value="1200" name="dollars" hidden>
+      </div>
+    </div>
+  </div>
+  <input type="submit" value="Save to Profile">
+    </form>
+
+  <div class="amortizeGraph"></div>
+  <div class="totalPaidGraph"></div>
+
+  <label>Add Extra Principal</label>
+  <input type="checkbox" class="addExtraPrincipal" name="addExtraPrincipal" value="">
+  <div class=extraPrincipal hidden>
+    <div class="extraPrincipalInput">
+      <label>Add one time principal payment</label>
+      <input type="checkbox" class="addExtraPrincipalOnce" name="addExtraPrincipalOnce" value="">
+      <input type="number" class="extraPrincipalOnce" value="10000" name="dollars" hidden>
+      <input type="date" class="extraPrincipalOnceDate" name="extraPrincipalOnceDate" hidden>
+    </div>
+
+    <div class="extraPrincipalInput">
+      <label>Add extra principal once a year</label>
+      <input type="checkbox" class="addExtraPrincipalPerYear" name="countyTaxCheckbox" value="">
+      <input type="number" class="extraPrincipalPerYear" value="3000" name="dollars" hidden>
+      <input type="date" class="extraPrincipalPerYearDate" name="extraPrincipalPerYearDate" hidden>
+    </div>
+
+    <div class="extraPrincipalInput">
+      <label>Add extra principal every month</label>
+      <input type="checkbox" class="addExtraPrincipalPerMonth" name="addExtraPrincipalPerMonth" value="">
+      <input type="number" class="extraPrincipalPerMonth" value="250" name="dollars" hidden>
+      <input type="date" class="extraPrincipalPerMonthDate" name="extraPrincipalOnceDate" hidden>
+    </div>
+
+    <div class="amortizeExtraPrincipalGraph"></div>
+    <div class="totalExtraPrincipalPaidGraph"></div>
+    <div class="timeSaved">Time Saved: </div>
+    <div class="interestSaved">Interest Saved: $0</div>
+  </div>
+</body>
