@@ -9,14 +9,9 @@ class MortgageCalculatorView(View):
             'interest_rate': 4.5,
             'loan_terms': [10, 15, 30],
         }
-        return render(request, 'mortgage-calculator2.html', template_vars)
+        return render(request, 'mortgage-calculator.html', template_vars)
 
     def post(self, request):
-        template_vars = {
-            'balance': 150000,
-            'interest_rate': 4.5,
-            'loan_terms': [10, 15, 30],
-        }
 
         MortgageUtils.add_mortgage(
             principal_balance=request.POST['balance'],
@@ -26,6 +21,13 @@ class MortgageCalculatorView(View):
             mortgage_insurance=200,
             home_insurance=500,
             property_tax=100,
+            user_id=1,
         )
+        # if the user is authenticated save to account and take to overview
+        if request.user.is_authenticated():
+            render(request, 'overview.html')
 
-        return render(request, 'mortgage-submission.html', template_vars)
+        template_vars = {
+            'get_started': 'Save!',
+        }
+        return render(request, 'account.html', template_vars)
