@@ -53,6 +53,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            'debt-manager/templates',
             'account/templates',
             'debt/templates',
         ],
