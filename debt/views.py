@@ -30,4 +30,4 @@ class MortgageCalculatorView(View):
         template_vars = {
             'get_started': 'Save!',
         }
-        return render(request, 'account.html', template_vars)
+        return render(request, 'sign-in.html', template_vars)
