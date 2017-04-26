@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags #}
+    <link rel="icon" href="{% static 'images/foo.jpg' %}">
+
+    {# external CSS #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {# optional theme #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    {# debt manager CSS #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/debt.css' %}">
+
+    {# external js libraries #}
+    {# load jquery FIRST (it is a dependency) ... order matters! #}
+    <script type="text/javascript" src="{% static 'js/jquery-latest.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/underscore-min.js' %}"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+
+    {# Debt Manager js #}
+    <script type="text/javascript" src="{% static 'js/mortgage.js' %}"></script>
+
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+
+  <body>
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+      <hr>
+      <footer>
+        <p>&copy; 2017 Company, Inc.</p>
+      </footer>
+    {% endblock %}
+  </body>
+</html>
