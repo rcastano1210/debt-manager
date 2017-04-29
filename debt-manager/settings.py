@@ -53,6 +53,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            os.path.join(BASE_DIR, 'debt-manager/templates'),
             'debt-manager/templates',
             'account/templates',
             'debt/templates',
