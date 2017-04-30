@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from debt.controllers import MortgageUtils
 
@@ -25,9 +25,10 @@ class MortgageCalculatorView(View):
         )
         # if the user is authenticated save to account and take to overview
         if request.user.is_authenticated():
-            render(request, 'overview.html')
+            return redirect('/overview')
 
-        template_vars = {
-            'get_started': 'Save!',
-        }
-        return render(request, 'sign-in.html', template_vars)
+        else:
+            template_vars = {
+                'get_started': 'Save!',
+            }
+            return redirect('/sign-in', template_vars)
